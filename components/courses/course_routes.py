@@ -1,4 +1,5 @@
 from flask import Blueprint, request, jsonify
+from .course_model import Course
 # from admin import admin_controller
 
 # Create a Blueprint for API routes

@@ -10,11 +10,12 @@ app.config["MONGO_URI"] = DatabaseConfig.MONGO_URI
 mongo = PyMongo(app)
 
 # Register the API blueprint
-from components.courses.course_routes import course_blueprint
-app.register_blueprint(course_blueprint, url_prefix='/api/v1')
+from components.view.view_routes import views_bp
+app.register_blueprint(views_bp, url_prefix='/')
 
-from components.view.view_routes import views_blueprint
-app.register_blueprint(views_blueprint, url_prefix='/')
+# from components.courses.course_routes import course_blueprint
+# app.register_blueprint(course_blueprint, url_prefix='/api/v1')
+
 
 
 if __name__ == '__main__':

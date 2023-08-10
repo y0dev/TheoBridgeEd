@@ -1,11 +1,13 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, render_template
+import os
 # from admin import admin_controller
 
 # Create a Blueprint for API routes
-views_blueprint = Blueprint('api', __name__)
-
+views_bp= Blueprint('api', __name__, template_folder='views/')
 # API endpoint to get a list of courses
-@views_blueprint.route('/', methods=['GET'])
+@views_bp.route('/', methods=['GET'])
 def get_landing_page():
-    courses_data = [{'id': 1, 'title': 'sample'}]
-    return jsonify(courses_data)
+    template_folder_path = os.path.abspath(views_bp.template_folder)
+    print(os.path.exists(os.path.join(template_folder_path,'index.pug')))
+    print(template_folder_path,views_bp.template_folder)
+    return render_template('index.pug')
