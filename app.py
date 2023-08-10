@@ -4,7 +4,9 @@ from flask_pymongo import PyMongo
 app = Flask(__name__)
 
 # Configuration for MongoDB
-app.config["MONGO_URI"] = "mongodb://localhost:27017/myapp_db"
+from config.app_config import AppConfig
+from config.database_config import DatabaseConfig
+app.config["MONGO_URI"] = DatabaseConfig.MONGO_URI
 mongo = PyMongo(app)
 
 # Register the API blueprint
@@ -16,4 +18,4 @@ app.register_blueprint(views_blueprint, url_prefix='/')
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=AppConfig.DEBUG)
